@@ -1,0 +1,35 @@
+* {
+    margin         : 0;
+    padding        : 0;
+    list-style     : none;
+    text-decoration: none;
+    box-sizing     : border-box;
+    font-size      : 14px;
+    touch-action  : none;
+}
+
+a {
+    color: #333;
+}
+
+input,
+select {
+    vertical-align: middle;
+}
+
+button {
+    touch-action: none;
+}
+
+.clearfix::after {
+    content      : "";
+    display      : block;
+    height       : 0;
+    clear        : both;
+    /* visibility: hidden; */
+}
+
+.clearfix {
+    *zoom : 1;
+    /*zoom: 1是IE6清除浮动的方式,只有IE7以下版本能识别*/
+}
