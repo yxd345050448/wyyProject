@@ -1,8 +1,7 @@
 # wyyProject
 调用wyyAPI的一款听歌软件
+使用vue-cli4+vue全家桶
 # 听歌app
-
-
 
 推荐榜单
 
