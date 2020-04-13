@@ -26,7 +26,7 @@
           <div is="router-link" to="/home/myPage/user/userSong">
             <van-icon size="0.5rem" name="music-o" class="user-icon" />我的歌单
           </div>
-          <div is="router-link" to="/home/myPage/user/attention" >
+          <div is="router-link" to="/home/myPage/user/attention">
             <van-icon size="0.5rem" name="star-o" class="user-icon" />我的关注
           </div>
         </div>
@@ -69,19 +69,6 @@ export default {
         this.$toast.fail("无法获取用户信息");
       }
     },
-    //获取用户收藏信息
-    // getUserFn() {
-    //   if (this.userId) {
-    //     this.$axios({
-    //       url: API.userSubcount,
-    //       method: "get"
-    //     }).then(res => {
-    //       console.log(res);
-    //     });
-    //   } else {
-    //     this.$toast.fail("无法获取用户信息");
-    //   }
-    // },
     //收藏页
     toCollect() {
       this.$router.push({ path: "/home/myPage/user/collect" });
@@ -105,7 +92,15 @@ export default {
     this.getUserDetail();
     // this.getUserFn();
   },
-  activated() {}
+  activated() {},
+  beforeRouteEnter(to, from, next) {
+    //如果登录了,则可以进入,否则去到登录页
+    if (localStorage.getItem("userId")) { 
+      next();
+    } else {
+      next("/home/myPage/login");
+    }
+  }
 };
 </script>
 <style lang='less' scoped>

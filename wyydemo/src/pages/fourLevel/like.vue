@@ -10,7 +10,12 @@
         finished-text="没有更多了"
         @load="loadList"
       >
-        <van-cell is="li" v-for="(item,index) in likeList" :key="index" @click.stop="toPlay(item.id)">
+        <van-cell
+          is="li"
+          v-for="(item,index) in likeList"
+          :key="index"
+          @click.stop="toPlay(item.id)"
+        >
           <div class="list-item">
             <img :src="item.al.picUrl" alt />
             <div class="item-text">
@@ -88,7 +93,7 @@ export default {
     },
     //加载歌曲列表
     loadList() {
-      setTimeout(() => {
+      var time = setTimeout(() => {
         if (this.refreshing) {
           this.likeList = [];
           this.refreshing = false;
@@ -104,7 +109,7 @@ export default {
           // var length = Math.floor(res.data.songs.length / 10);
           if (this.pageNum + 1 >= res.data.songs.length) {
             console.log("没有更多了");
-            
+            this.finished = true;
           } else {
             for (let i = 0; i < 15; i++) {
               console.log(this.pageNum);
@@ -112,10 +117,10 @@ export default {
               this.pageNum++;
             }
           }
-
           this.loading = false;
           if (this.likeList.length >= res.data.songs.length) {
             this.finished = true;
+            clearTimeout(time)
           }
         });
       }, 1000);

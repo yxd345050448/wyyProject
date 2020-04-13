@@ -118,16 +118,13 @@ export default {
           password: this.user.password
         }
       }).then(res => {
-        console.log(res.status);
+        console.log(res.data.code);
         if (res.data.code == 200) {
           this.$toast.success("登录成功");
-          this.$router.replace({
-            path: "/home/myPage/user",
-            query: { userId: res.data.account.id }
-          });
           localStorage.setItem("userId", res.data.account.id);
-        }else{
-          this.$toast.fail("登录失败")
+          this.$router.replace("/home/myPage/user",()=>{});
+        } else {
+          this.$toast.fail("登录失败");
         }
       });
     }
@@ -185,6 +182,7 @@ export default {
     position: absolute;
     bottom: 0;
     border-radius: 0.4rem;
+    touch-action: none;
   }
 }
 </style>
